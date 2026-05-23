@@ -1,1 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>PulseSMP™ — PvP • Grinding • Fun</title>
+<meta name="description" content="PulseSMP is a Minecraft SMP built for PvP, grinding, and pure chaos. Awaken your Pulse and dominate the server." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --bg:#07070b;
+    --panel:#0f1018;
+    --panel2:#15172310;
+    --text:#e9ecf1;
+    --muted:#9aa0b4;
+    --accent:#ff2a6d;
+    --accent2:#7a2bff;
+    --glow:0 0 24px rgba(255,42,109,.45),0 0 64px rgba(122,43,255,.25);
+  }
+  html,body{background:var(--bg);color:var(--text);font-family:'Rajdhani',sans-serif;scroll-behavior:smooth}
+  body{
+    background:
+      radial-gradient(1200px 600px at 80% -10%, rgba(122,43,255,.25), transparent 60%),
+      radial-gradient(900px 500px at -10% 30%, rgba(255,42,109,.22), transparent 60%),
+      linear-gradient(180deg,#07070b,#05050a);
+    min-height:100vh;overflow-x:hidden;
+  }
+  a{color:inherit;text-decoration:none}
+  .pixel{font-family:'Press Start 2P',monospace;letter-spacing:1px}
+  nav{
+    position:sticky;top:0;z-index:50;
+    backdrop-filter:blur(12px);
+    background:rgba(7,7,11,.6);
+    border-bottom:1px solid rgba(255,255,255,.06);
+  }
+  .nav-wrap{max-width:1200px;margin:0 auto;padding:14px 22px;display:flex;align-items:center;justify-content:space-between}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:700}
+  .brand .heart{font-size:22px;filter:drop-shadow(0 0 8px var(--accent))}
+  .brand .name{font-family:'Press Start 2P',monospace;font-size:13px;background:linear-gradient(90deg,var(--accent),var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .nav-links{display:flex;gap:22px;font-weight:600}
+  .nav-links a{color:var(--muted);transition:color .2s}
+  .nav-links a:hover{color:var(--text)}
+  .cta{
+    padding:10px 18px;border-radius:8px;font-weight:700;
+    background:linear-gradient(90deg,var(--accent),var(--accent2));
+    color:#fff;box-shadow:var(--glow);transition:transform .2s;
+    border:none;cursor:pointer;
+  }
+  .cta:hover{transform:translateY(-2px)}
 
+  header.hero{
+    max-width:1200px;margin:0 auto;padding:90px 22px 60px;text-align:center;position:relative;
+  }
+  header.hero .tag{
+    display:inline-block;padding:6px 14px;border-radius:999px;
+    background:rgba(255,42,109,.1);border:1px solid rgba(255,42,109,.35);
+    color:#ffb3cc;font-size:13px;font-weight:700;margin-bottom:22px;
+  }
+  header.hero h1{
+    font-family:'Press Start 2P',monospace;
+    font-size:clamp(28px,6vw,64px);line-height:1.15;margin-bottom:22px;
+    background:linear-gradient(90deg,#fff 0%, #ffb3cc 40%, var(--accent2) 100%);
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+    text-shadow:0 0 40px rgba(255,42,109,.25);
+  }
+  header.hero p.sub{font-size:clamp(16px,2vw,20px);color:var(--muted);max-width:720px;margin:0 auto 32px}
+  .hero-actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+  .ghost{padding:10px 18px;border-radius:8px;border:1px solid rgba(255,255,255,.15);font-weight:700;color:var(--text);background:transparent;cursor:pointer;transition:all .2s}
+  .ghost:hover{border-color:var(--accent);color:var(--accent)}
+  .ip-box{
+    margin-top:36px;display:inline-flex;align-items:center;gap:14px;
+    padding:14px 20px;border-radius:12px;
+    background:rgba(15,16,24,.7);border:1px solid rgba(255,255,255,.08);
+    font-family:'Press Start 2P',monospace;font-size:12px;
+  }
+  .ip-box .ip{color:var(--accent)}
+  .copy-btn{background:rgba(255,42,109,.15);color:#ffb3cc;border:1px solid rgba(255,42,109,.4);padding:6px 12px;border-radius:6px;cursor:pointer;font-size:11px;font-family:inherit}
+  .copy-btn:hover{background:rgba(255,42,109,.3)}
+
+  section{max-width:1200px;margin:0 auto;padding:80px 22px}
+  h2.section-title{
+    font-family:'Press Start 2P',monospace;
+    font-size:clamp(22px,3.5vw,36px);
+    margin-bottom:14px;text-align:center;
+    background:linear-gradient(90deg,#fff,var(--accent));
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .section-sub{color:var(--muted);text-align:center;max-width:680px;margin:0 auto 50px;font-size:17px}
+
+  .features{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:22px}
+  .feature{
+    padding:28px;border-radius:14px;
+    background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.01));
+    border:1px solid rgba(255,255,255,.08);transition:transform .25s,border-color .25s;
+  }
+  .feature:hover{transform:translateY(-4px);border-color:rgba(255,42,109,.4)}
+  .feature .ic{font-size:32px;margin-bottom:14px}
+  .feature h3{font-size:20px;margin-bottom:8px;font-weight:700}
+  .feature p{color:var(--muted);font-size:15px;line-height:1.55}
+
+  .pulses{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:22px}
+  .pulse{
+    position:relative;padding:26px;border-radius:16px;
+    background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.01));
+    border:1px solid rgba(255,255,255,.08);overflow:hidden;
+    transition:transform .25s;
+  }
+  .pulse::before{
+    content:"";position:absolute;inset:-1px;border-radius:16px;padding:1px;
+    background:linear-gradient(135deg,var(--pc1,var(--accent)),var(--pc2,var(--accent2)));
+    -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+    -webkit-mask-composite:xor;mask-composite:exclude;opacity:.6;pointer-events:none;
+  }
+  .pulse:hover{transform:translateY(-4px)}
+  .pulse h3{
+    display:flex;align-items:center;gap:10px;
+    font-family:'Press Start 2P',monospace;font-size:14px;margin-bottom:16px;
+    color:var(--pc1,var(--accent));
+  }
+  .pulse h3 .emoji{font-size:22px}
+  .pulse .row{margin-bottom:12px}
+  .pulse .label{display:inline-block;font-size:11px;font-weight:700;letter-spacing:1px;
+    padding:3px 8px;border-radius:4px;margin-bottom:6px;text-transform:uppercase}
+  .pulse .label.pass{background:rgba(255,255,255,.08);color:#cfd3e0}
+  .pulse .label.awk{background:linear-gradient(90deg,var(--pc1,var(--accent)),var(--pc2,var(--accent2)));color:#fff}
+  .pulse .row p{color:var(--muted);font-size:14.5px;line-height:1.55}
+
+  /* Pulse color themes */
+  .p-dragon{--pc1:#a060ff;--pc2:#ff5cf2}
+  .p-earth{--pc1:#7ad36b;--pc2:#3a8f2c}
+  .p-speed{--pc1:#7ee0ff;--pc2:#3b82f6}
+  .p-strength{--pc1:#ff7a5c;--pc2:#c92a2a}
+  .p-feather{--pc1:#eaeaea;--pc2:#9ca3af}
+  .p-fire{--pc1:#ff7a1a;--pc2:#ff2d2d}
+  .p-thunder{--pc1:#ffe04a;--pc2:#ffaa00}
+  .p-ocean{--pc1:#4adbff;--pc2:#1e5bff}
+
+  .plugins{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+  .plugin{
+    padding:18px 20px;border-radius:10px;
+    background:rgba(15,16,24,.7);border:1px solid rgba(255,255,255,.08);
+    display:flex;align-items:center;gap:12px;font-weight:600;
+    transition:border-color .2s;
+  }
+  .plugin:hover{border-color:rgba(122,43,255,.45)}
+  .plugin .dot{width:10px;height:10px;border-radius:50%;background:linear-gradient(90deg,var(--accent),var(--accent2));box-shadow:0 0 12px var(--accent)}
+
+  .join-box{
+    max-width:900px;margin:0 auto;padding:50px;border-radius:20px;text-align:center;
+    background:linear-gradient(135deg,rgba(255,42,109,.12),rgba(122,43,255,.12));
+    border:1px solid rgba(255,255,255,.1);
+  }
+  .join-box h2{font-family:'Press Start 2P',monospace;font-size:clamp(20px,3vw,30px);margin-bottom:14px}
+  .join-box p{color:var(--muted);margin-bottom:24px;font-size:17px}
+
+  footer{
+    border-top:1px solid rgba(255,255,255,.06);margin-top:60px;
+    padding:30px 22px;text-align:center;color:var(--muted);font-size:14px;
+  }
+  footer .heart{color:var(--accent)}
+
+  @media (max-width:640px){
+    .nav-links{display:none}
+    section{padding:60px 18px}
+    .join-box{padding:34px 22px}
+  }
+
+  /* subtle floating animation on hero tag */
+  @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+  header.hero .tag{animation:float 3s ease-in-out infinite}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-wrap">
+    <div class="brand">
+      <span class="heart">🫀</span>
+      <span class="name">PulseSMP™</span>
+    </div>
+    <div class="nav-links">
+      <a href="#features">Features</a>
+      <a href="#pulses">Pulses</a>
+      <a href="#plugins">Plugins</a>
+      <a href="#join">Join</a>
+    </div>
+    <button class="cta" onclick="document.getElementById('join').scrollIntoView({behavior:'smooth'})">Play Now</button>
+  </div>
+</nav>
+
+<header class="hero">
+  <span class="tag">🫀 Season 1 — Now Live</span>
+  <h1>Awaken Your Pulse.<br/>Dominate the SMP.</h1>
+  <p class="sub">PulseSMP is a hardcore Minecraft SMP built for PvP, grinding, and pure chaos. Choose your Pulse, master your awakening, and crush your enemies.</p>
+  <div class="hero-actions">
+    <button class="cta" onclick="document.getElementById('pulses').scrollIntoView({behavior:'smooth'})">View Pulses</button>
+    <button class="ghost" onclick="document.getElementById('plugins').scrollIntoView({behavior:'smooth'})">See Plugins</button>
+  </div>
+  <div class="ip-box">
+    <span>IP:</span><span class="ip">play.pulsesmp.net</span>
+    <button class="copy-btn" onclick="navigator.clipboard.writeText('play.pulsesmp.net');this.textContent='COPIED'">COPY</button>
+  </div>
+</header>
+
+<section id="features">
+  <h2 class="section-title">Why PulseSMP?</h2>
+  <p class="section-sub">Eight unique Pulses, brutal PvP, deep grind, and a community built to wreak havoc.</p>
+  <div class="features">
+    <div class="feature"><div class="ic">⚔️</div><h3>Hardcore PvP</h3><p>Custom abilities, awakening ults, and balanced combat designed for skilled fighters.</p></div>
+    <div class="feature"><div class="ic">⛏️</div><h3>Endless Grind</h3><p>Level your Pulse, farm rare loot, build empires — progression that actually means something.</p></div>
+    <div class="feature"><div class="ic">🫀</div><h3>8 Unique Pulses</h3><p>Dragon, Earth, Speed, Strength, Feather, Fire, Thunder, Ocean. Each with passive + awakening.</p></div>
+    <div class="feature"><div class="ic">🏰</div><h3>Active Community</h3><p>Friendly staff, regular events, and players who actually log on. No dead server energy.</p></div>
+  </div>
+</section>
+
+<section id="pulses">
+  <h2 class="section-title">The 8 Pulses</h2>
+  <p class="section-sub">Each Pulse grants a passive ability and a devastating awakening. Choose wisely.</p>
+  <div class="pulses">
+
+    <div class="pulse p-dragon">
+      <h3><span class="emoji">🐉</span> Dragon Pulse</h3>
+      <div class="row"><span class="label pass">Passive</span><p>Obtained by right-clicking the dragon egg. Shoots dragon's breath every 5 hits. Player gets Regen II around end crystals.</p></div>
+      <div class="row"><span class="label awk">Awakening</span><p>Builds obsidian walls around the player. Anyone trapped inside takes 1 heart/sec from purple particles. Wind charges out, but you'll get slowed.</p></div>
+    </div>
+
+    <div class="pulse p-earth">
+      <h3><span class="emoji">🌍</span> Earth Pulse</h3>
+      <div class="row"><span class="label pass">Passive</span><p>Triggers a creeper explosion every 10 hits dealing 3 hearts of damage.</p></div>
+      <div class="row"><span class="label awk">Awakening</span><p>Shatters the ground in a wide radius for 5 hearts. Blocks erupt and fall — enemies hit take an extra 3 hearts.</p></div>
+    </div>
+
+    <div class="pulse p-speed">
+      <h3><span class="emoji">💨</span> Speed Pulse</h3>
+      <div class="row"><span class="label pass">Passive</span><p>Dash 2-3 blocks forward like a speed infuse. Permanent Speed I.</p></div>
+      <div class="row"><span class="label awk">Awakening</span><p>Summons a speed tornado of white particles dealing 1 heart/sec and pulling enemies in. Alt: Speed III + dash-through deals 3 hearts and knockback.</p></div>
+    </div>
+
+    <div class="pulse p-strength">
+      <h3><span class="emoji">💪</span> Strength Pulse</h3>
+      <div class="row"><span class="label pass">Passive</span><p>Permanent Strength I. After 10 hits you can dual-wield swords with forced-crit combos.</p></div>
+      <div class="row"><span class="label awk">Awakening</span><p>Three giant swords drop from the sky for 5 hearts each. Alt: TP to the Nether — you deal 2x damage, enemy gets Weakness and glows red.</p></div>
+    </div>
+
+    <div class="pulse p-feather">
+      <h3><span class="emoji">🪶</span> Feather Pulse</h3>
+      <div class="row"><span class="label pass">Passive</span><p>No fall damage + double jump. Every 10 hits releases a thorns-like particle ring (1 heart + knockback).</p></div>
+      <div class="row"><span class="label awk">Awakening</span><p>Soar into the sky — your weapon acts as a mace. Alt: Unleash a white particle ring that knocks enemies back for 3 hearts.</p></div>
+    </div>
+
+    <div class="pulse p-fire">
+      <h3><span class="emoji">🔥</span> Fire Pulse</h3>
+      <div class="row"><span class="label pass">Passive</span><p>Infinite fire resistance. Shoots magma balls every 10 hits dealing 2 hearts.</p></div>
+      <div class="row"><span class="label awk">Awakening</span><p>Lava walls surround the area. Massive magma balls deal 5 hearts — enemies can dodge if quick enough.</p></div>
+    </div>
+
+    <div class="pulse p-thunder">
+      <h3><span class="emoji">⚡</span> Thunder Pulse</h3>
+      <div class="row"><span class="label pass">Passive</span><p>Strikes lightning every 10 seconds for 1-2 hearts of damage.</p></div>
+      <div class="row"><span class="label awk">Awakening</span><p>Lightning rains everywhere. Player gets Strength III for 10s. Enemies struck 3-4 times for 2 hearts each.</p></div>
+    </div>
+
+    <div class="pulse p-ocean">
+      <h3><span class="emoji">🌊</span> Ocean Pulse</h3>
+      <div class="row"><span class="label pass">Passive</span><p>Infinite water breathing. +1 damage underwater.</p></div>
+      <div class="row"><span class="label awk">Awakening</span><p>Summons a tidal wave in 4 directions. Enemies hit take 4 hearts and massive knockback.</p></div>
+    </div>
+
+  </div>
+</section>
+
+<section id="plugins">
+  <h2 class="section-title">Server Plugins</h2>
+  <p class="section-sub">The custom toolkit powering every fight, every grind, and every awakening on PulseSMP.</p>
+  <div class="plugins">
+    <div class="plugin"><span class="dot"></span>PulseAbilities (Custom)</div>
+    <div class="plugin"><span class="dot"></span>OldCombatMechanics</div>
+    <div class="plugin"><span class="dot"></span>WorldGuard</div>
+    <div class="plugin"><span class="dot"></span>WorldEdit</div>
+    <div class="plugin"><span class="dot"></span>EssentialsX</div>
+    <div class="plugin"><span class="dot"></span>LuckPerms</div>
+    <div class="plugin"><span class="dot"></span>DiscordSRV</div>
+    <div class="plugin"><span class="dot"></span>CoreProtect</div>
+    <div class="plugin"><span class="dot"></span>PlaceholderAPI</div>
+    <div class="plugin"><span class="dot"></span>Citizens</div>
+    <div class="plugin"><span class="dot"></span>Vault + Economy</div>
+    <div class="plugin"><span class="dot"></span>AntiCheat (Matrix)</div>
+    <div class="plugin"><span class="dot"></span>ChestShop</div>
+    <div class="plugin"><span class="dot"></span>mcMMO</div>
+    <div class="plugin"><span class="dot"></span>CrazyCrates</div>
+    <div class="plugin"><span class="dot"></span>Multiverse-Core</div>
+  </div>
+</section>
+
+<section id="join">
+  <div class="join-box">
+    <h2>Ready to Awaken?</h2>
+    <p>Got a Pulse idea or balance suggestion? Open a ticket at <strong>🫀 ┃tickets</strong> on our Discord. Just don't ping the higherups or you'll get ticket blacklisted. Good luck!</p>
+    <div class="ip-box">
+      <span>IP:</span><span class="ip">play.pulsesmp.net</span>
+      <button class="copy-btn" onclick="navigator.clipboard.writeText('play.pulsesmp.net');this.textContent='COPIED'">COPY</button>
+    </div>
+    <div style="margin-top:24px">
+      <a class="cta" href="#" onclick="event.preventDefault()">Join Discord</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  Made with <span class="heart">🫀</span> by PulseSMP™ • Not affiliated with Mojang or Microsoft
+</footer>
+
+</body>
+</html>
